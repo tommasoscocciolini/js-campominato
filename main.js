@@ -39,24 +39,30 @@ function bombsGenerator(array, max){
 function gioco(posBombe, posFree, maxNumber){
   while (posFree.length < maxNumber - 16) {
     var numUser = parseInt(prompt("Inserisci numero, evita le BOMBE!"));
-
     if (!isNaN(numUser) && numUser >= 1 && numUser <= maxNumber && !posFree.includes(numUser)) {
       if (!posBombe.includes(numUser)) {
         posFree.push(numUser);
       } else {
         return posFree.length;
       }
-    } else alert("Numero fuori range o già inserito!")
+    } else alert("Numero fuori range o già inserito!");
   } return posFree.length;
 }
 
 function difficolta(){
   var diffUser = parseInt(prompt("Inserisci livello di difficoltà tra 0 e 2"));
-  if (diffUser==0) {
-    maxNumber=100;
-  } else if (diffUser==1) {
-    maxNumber=80;
-  } else if (diffUser==2) {
-    maxNumber=50;
-  } else alert("valore di difficolta non valido: Inserisci 0, 1 oppure 2")
+  var valid=true;
+  while (valid) {
+    if (diffUser==0) {
+      maxNumber=100;
+      valid=false;
+    } else if (diffUser==1) {
+      maxNumber=80;
+      valid=false;
+    } else if (diffUser==2) {
+      maxNumber=50;
+      valid=false;
+    } else diffUser = parseInt(prompt("Errore, inserisci difficoltà valida: 0, 1 oppure 2"));
+    // } else alert("valore di difficolta non valido: Inserisci 0, 1 oppure 2");
+  }
 }
